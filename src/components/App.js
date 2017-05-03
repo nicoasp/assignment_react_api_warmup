@@ -2,6 +2,7 @@ import React from 'react'
 import JumbotronFluid from './elements/JumbotronFluid'
 import UserList from './UserList'
 import UserForm from './UserForm'
+import Modal from './Modal'
 
 const App = ({users, isFetching, error, onAddUser, onDeleteUser}) => (
   <div className="App">
@@ -19,6 +20,7 @@ const App = ({users, isFetching, error, onAddUser, onDeleteUser}) => (
       onSubmit={onAddUser}
       error={error}
     />
+    <Modal />
   </div>
 )
 

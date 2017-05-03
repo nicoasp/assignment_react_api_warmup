@@ -23,6 +23,7 @@ const UserCard = ({user, onDeleteUser}) => {
         <h4>{first_name} {last_name}</h4>
       </div>
       <Button name={id} children="Delete" onClick={onDeleteUser} />
+      <Button name={id} children="Edit" onClick={onEditUser} />
     </div>
   )
 }

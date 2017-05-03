@@ -13,6 +13,7 @@ class AppContainer extends Component {
       users: [],
       isFetching: false,
       error: null,
+      userToEdit: ''
     }
   }
 
