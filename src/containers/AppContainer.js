@@ -84,9 +84,26 @@ class AppContainer extends Component {
       })
   }
 
+  onDeleteUser = (e) => {
+    const userToDelete = e.target.name;
+
+    const options = {
+      method: 'DELETE'
+    }
+
+    fetch(`https://reqres.in/api/users/${userToDelete}`, options)
+      .then((response) => {
+        if(response.status == 204) {
+          this.setState({
+            users: deleteThisUser(this.state.users, userToDelete)
+          })
+        }
+      })
+  }
+
   render() {
     return (
-      <App onAddUser={this.onAddUser} {...this.state} />
+      <App onAddUser={this.onAddUser} onDeleteUser={this.onDeleteUser} {...this.state} />
     )
   }
 }

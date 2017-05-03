@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './elements/Button'
 
 // Custom card component for each user's data
-const UserCard = ({user}) => {
+const UserCard = ({user, onDeleteUser}) => {
   const {first_name, last_name, avatar, id} = user
 
   // Set the CSS max-width attribute directly in the
@@ -22,7 +22,7 @@ const UserCard = ({user}) => {
       <div className="card-block">
         <h4>{first_name} {last_name}</h4>
       </div>
-      <Button name={id} children="Delete" />
+      <Button name={id} children="Delete" onClick={onDeleteUser} />
     </div>
   )
 }

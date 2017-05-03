@@ -1,14 +1,13 @@
 import React from 'react'
 
 const Button = (props) => {
-  const {size, color, children, type, name} = props
+  const {size, color, children, ...restOfProps} = props
   const sizeClass = size ? `btn-${size}` : ''
 
   return (
     <button
-      type={type}
-      name={name}
       className={`btn btn-${color} ${sizeClass}`}
+      {...restOfProps}
     >
       {children}
     </button>
