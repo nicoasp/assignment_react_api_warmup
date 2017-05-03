@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import App from '../components/App'
 import serialize from 'form-serialize'
+import { deleteThisUser } from "../helpers/userCrud";
 
 class AppContainer extends Component {
   constructor() {
@@ -72,7 +73,8 @@ class AppContainer extends Component {
             ...this.state.users,
             json,
           ]
-        }, () => { form.reset() })
+        }, () => { 
+          form.reset() })
       })
       .catch((error) => {
         // Set error in state & log to console
@@ -85,6 +87,8 @@ class AppContainer extends Component {
   }
 
   onDeleteUser = (e) => {
+    this.setState({isFetching: true});
+
     const userToDelete = e.target.name;
 
     const options = {
@@ -95,9 +99,18 @@ class AppContainer extends Component {
       .then((response) => {
         if(response.status == 204) {
           this.setState({
-            users: deleteThisUser(this.state.users, userToDelete)
+            isFetching: false,
+            users: deleteThisUser(this.state.users, userToDelete),
           })
         }
+      })
+      .catch((error) => {
+        // Set error in state & log to console
+        console.log(error)
+        this.setState({
+          isFetching: false,
+          error,
+        })
       })
   }
 
