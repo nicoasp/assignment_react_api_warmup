@@ -4,7 +4,7 @@ import UserList from './UserList'
 import UserForm from './UserForm'
 import Modal from './Modal'
 
-const App = ({users, isFetching, error, onAddUser, onDeleteUser, onEditUser, userToEdit}) => (
+const App = ({users, isFetching, error, onAddUser, onDeleteUser, onEditUser, userToEdit, onSaveChanges}) => (
   <div className="App">
     <JumbotronFluid
       heading="User CRUD"
@@ -21,7 +21,7 @@ const App = ({users, isFetching, error, onAddUser, onDeleteUser, onEditUser, use
       onSubmit={onAddUser}
       error={error}
     />
-    <Modal userToEdit={userToEdit}/>
+    <Modal userToEdit={userToEdit} onSaveChanges={onSaveChanges} />
   </div>
 )
 
