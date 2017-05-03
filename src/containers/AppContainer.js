@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import App from '../components/App'
 import serialize from 'form-serialize'
-import { deleteThisUser } from "../helpers/userCrud";
+import { deleteThisUser, findThisUser } from "../helpers/userCrud";
 
 class AppContainer extends Component {
   constructor() {
@@ -13,7 +13,7 @@ class AppContainer extends Component {
       users: [],
       isFetching: false,
       error: null,
-      userToEdit: ''
+      userToEdit: '',
     }
   }
 
@@ -34,6 +34,14 @@ class AppContainer extends Component {
           isFetching: false,
         })
       })
+  }
+
+  onEditUser = (e) => {
+    e.preventDefault()
+    const userId = e.target.name;
+    this.setState({
+      userToEdit: findThisUser(this.state.users, userId)
+    })    
   }
 
   onAddUser = (e) => {
@@ -117,7 +125,12 @@ class AppContainer extends Component {
 
   render() {
     return (
-      <App onAddUser={this.onAddUser} onDeleteUser={this.onDeleteUser} {...this.state} />
+      <App 
+      onAddUser={this.onAddUser} 
+      onDeleteUser={this.onDeleteUser}
+      onEditUser={this.onEditUser} 
+      {...this.state} 
+      />
     )
   }
 }
