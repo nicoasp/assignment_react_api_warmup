@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import App from '../components/App'
 import serialize from 'form-serialize'
-import { deleteThisUser, findThisUser } from "../helpers/userCrud";
+import { deleteThisUser, findThisUser, updateThisUser } from "../helpers/userCrud";
 
 class AppContainer extends Component {
   constructor() {
@@ -28,7 +28,6 @@ class AppContainer extends Component {
     fetch('https://reqres.in/api/users?delay=1')
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         this.setState({
           users: json.data,
           isFetching: false,
@@ -74,12 +73,14 @@ class AppContainer extends Component {
       .then((json) => {
         // Update the user list and isFetching.
         // Reset the form in a callback after state is set
+        console.log("Edited User: ", json)
         json.id = this.state.userToEdit.id;
         this.setState({
           isFetching: false,
           users: updateThisUser(this.state.users, json),
           userToEdit: ''
-        })
+          })
+      })
       .catch((error) => {
         // Set error in state & log to console
         console.log(error)
@@ -88,7 +89,7 @@ class AppContainer extends Component {
           error,
         })
       })
-  }
+    }
 
   onAddUser = (e) => {
     e.preventDefault()
