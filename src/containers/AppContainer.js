@@ -73,7 +73,6 @@ class AppContainer extends Component {
       .then((json) => {
         // Update the user list and isFetching.
         // Reset the form in a callback after state is set
-        console.log("Edited User: ", json)
         json.id = this.state.userToEdit.id;
         this.setState({
           isFetching: false,

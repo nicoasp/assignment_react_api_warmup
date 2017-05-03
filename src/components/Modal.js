@@ -6,7 +6,6 @@ import Alert from './elements/Alert'
 import Showable from './elements/Showable'
 
 const Modal = ({onSubmit, error, userToEdit, onSaveChanges}) => {
-  console.log("inside modal", userToEdit);
   const display = userToEdit ? "block" : "none";
   return (
     
@@ -14,7 +13,7 @@ const Modal = ({onSubmit, error, userToEdit, onSaveChanges}) => {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
 
-          <form className="container" onSubmit={onSubmit} >
+          <form className="container" onSubmit={onSaveChanges} >
             <h1>Edit User</h1>
             <Showable show={error}>
               <Alert type="danger">
@@ -22,15 +21,15 @@ const Modal = ({onSubmit, error, userToEdit, onSaveChanges}) => {
               </Alert>
             </Showable>
             <InputGroup name="first_name" labelText="First Name">
-              <Input name="first_name" value={userToEdit.first_name} />
+              <Input name="first_name" defaultValue={userToEdit.first_name ? userToEdit.first_name : ''} />
             </InputGroup>
             <InputGroup name="last_name" labelText="Last Name">
-              <Input name="last_name" value={userToEdit.last_name} />
+              <Input name="last_name" defaultValue={userToEdit.last_name ? userToEdit.last_name : ''} />
             </InputGroup>
             <InputGroup name="avatar" labelText="Photo Link">
-              <Input name="avatar" value={userToEdit.avatar}/>
+              <Input name="avatar" defaultValue={userToEdit.avatar ? userToEdit.avatar : ''}/>
             </InputGroup>
-            <Button type="submit" color="primary" onClick={onSaveChanges}>Save Changes</Button>
+            <Button type="submit" color="primary" >Save Changes</Button>
           </form>
         </div>
       </div>

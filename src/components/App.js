@@ -3,6 +3,7 @@ import JumbotronFluid from './elements/JumbotronFluid'
 import UserList from './UserList'
 import UserForm from './UserForm'
 import Modal from './Modal'
+import Showable from './elements/Showable'
 
 const App = ({users, isFetching, error, onAddUser, onDeleteUser, onEditUser, userToEdit, onSaveChanges}) => (
   <div className="App">
@@ -21,7 +22,9 @@ const App = ({users, isFetching, error, onAddUser, onDeleteUser, onEditUser, use
       onSubmit={onAddUser}
       error={error}
     />
-    <Modal userToEdit={userToEdit} onSaveChanges={onSaveChanges} />
+    <Showable show={userToEdit} >
+      <Modal userToEdit={userToEdit} onSaveChanges={onSaveChanges} />
+    </Showable>
   </div>
 )
 
